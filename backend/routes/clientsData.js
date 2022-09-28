@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router(); 
 
 //importing data model schemas
-let { primarydata } = require("../models/models"); 
+let { clientdata } = require("../models/models"); 
 let { eventdata } = require("../models/models"); 
 
 //GET all entries
 router.get("/", (req, res, next) => { 
-    primarydata.find( 
+    clientdata.find( 
         (error, data) => {
             if (error) {
                 return next(error);
@@ -20,7 +20,7 @@ router.get("/", (req, res, next) => {
 
 //GET single entry by ID
 router.get("/id/:id", (req, res, next) => {
-    primarydata.find( 
+    clientdata.find( 
         { _id: req.params.id }, 
         (error, data) => {
             if (error) {
@@ -43,7 +43,7 @@ router.get("/search/", (req, res, next) => {
             "phoneNumbers.primaryPhone": { $regex: `^${req.query["phoneNumbers.primaryPhone"]}`, $options: "i" }
         }
     };
-    primarydata.find( 
+    clientdata.find( 
         dbQuery, 
         (error, data) => { 
             if (error) {
@@ -62,7 +62,7 @@ router.get("/events/:id", (req, res, next) => {
 
 //POST
 router.post("/", (req, res, next) => { 
-    primarydata.create( 
+    clientdata.create( 
         req.body,
         (error, data) => { 
             if (error) {
@@ -72,14 +72,14 @@ router.post("/", (req, res, next) => {
             }
         }
     );
-    primarydata.createdAt;
-    primarydata.updatedAt;
-    primarydata.createdAt instanceof Date;
+    clientdata.createdAt;
+    clientdata.updatedAt;
+    clientdata.createdAt instanceof Date;
 });
 
 //PUT update (make sure req body doesn't have the id)
 router.put("/:id", (req, res, next) => { 
-    primarydata.findOneAndUpdate( 
+    clientdata.findOneAndUpdate( 
         { _id: req.params.id }, 
         req.body,
         (error, data) => {

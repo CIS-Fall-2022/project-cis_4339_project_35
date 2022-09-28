@@ -31,11 +31,11 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 //import routes
-const primaryDataRoute  = require('./routes/primaryData');
+const clientsDataRoute  = require('./routes/clientsData');
 const eventsDataRoute  = require('./routes/eventsData');
 
 //setup middle ware for routes
-app.use('/primaryData', primaryDataRoute);
+app.use('/clientData', clientsDataRoute);
 app.use('/eventData', eventsDataRoute)
 
 app.listen(PORT, () => {
