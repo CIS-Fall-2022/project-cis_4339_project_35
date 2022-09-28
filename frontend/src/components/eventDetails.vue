@@ -291,7 +291,7 @@ export default {
           axios
             .get(
               import.meta.env.VITE_ROOT_API +
-                `/primarydata/id/${this.attendeeIDs[i]}`
+                `/clientdata/id/${this.attendeeIDs[i]}`
             )
             .then((resp) => {
               let data = resp.data[0];

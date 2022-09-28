@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //collection for intakeData
-let primaryDataSchema = new Schema({
+let clientDataSchema = new Schema({
     _id: { type: String, default: uuid.v1 },
     firstName: {
         type: String,
@@ -42,7 +42,7 @@ let primaryDataSchema = new Schema({
         }
     }
 }, {
-    collection: 'primaryData',
+    collection: 'clientData',
     timestamps: true
 });
 
@@ -88,8 +88,8 @@ let eventDataSchema = new Schema({
 });
 
 // create models from mongoose schemas
-const primarydata = mongoose.model('primaryData', primaryDataSchema);
+const clientdata = mongoose.model('clientData', clientDataSchema);
 const eventdata = mongoose.model('eventData', eventDataSchema);
 
 // package the models in an object to export 
-module.exports = { primarydata, eventdata }
+module.exports = { clientdata, eventdata }
