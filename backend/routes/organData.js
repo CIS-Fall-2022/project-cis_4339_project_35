@@ -90,7 +90,7 @@ router.put("/:id", (req, res, next) => {
 
 
 
-//API to delete a client
+//API to delete an organization
 router.delete("/:id", (req, res, next) => {
     console.log(req.params);
     organData.deleteOne({ id: req.params.id }, (error, data) => {
