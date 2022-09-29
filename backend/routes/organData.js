@@ -51,11 +51,6 @@ router.get("/search/", (req, res, next) => {
     );
 });
 
-//GET events for a single client
-router.get("/events/:id", (req, res, next) => { 
-    
-});
-
 //POST
 router.post("/", (req, res, next) => { 
     organdata.create( 
@@ -89,20 +84,19 @@ router.put("/:id", (req, res, next) => {
 });
 
 
-
-//API to delete an organization
-router.delete("/:id", (req, res, next) => {
-    console.log(req.params);
-    organData.deleteOne({ id: req.params.id }, (error, data) => {
-      if (error) {
-        console.log(error);
-        return next(error);
-      } else {
-        res.send("deleted from db");
-        console.log("deleted from db");
-      }
-    });
+//DELETE an organization
+router.delete("/:id",(req, res, next) => {
+    clientdata.findOneAndRemove(
+        { _id: req.params.id },
+        req.body,
+        (error, data) => {
+            if (error) {
+                return next(error);
+            } else {
+                res.json(data);
+            }
+        }
+    );
 });
-
 
 module.exports = router;
