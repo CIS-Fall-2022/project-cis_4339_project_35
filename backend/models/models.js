@@ -2,7 +2,7 @@ const uuid = require('uuid');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-//collection for intakeData
+//collection for clientData
 let clientDataSchema = new Schema({
     _id: { type: String, default: uuid.v1 },
     firstName: {
@@ -40,7 +40,10 @@ let clientDataSchema = new Schema({
         zip: {
             type: String,
         }
-    }
+    },
+    organization:[{
+        type: String
+    }]
 }, {
     collection: 'clientData',
     timestamps: true
@@ -82,12 +85,15 @@ let eventDataSchema = new Schema({
     },
     attendees: [{
         type: String
+    }],
+    organization:[{
+        type: String
     }]
 }, {
     collection: 'eventData'
 });
 
-//collection for eventData
+//collection for organData
 let organDataSchema = new Schema({
     _id: { type: String, default: uuid.v1 },
     orgName: {
