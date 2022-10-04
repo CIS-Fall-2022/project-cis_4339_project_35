@@ -86,7 +86,7 @@ router.put("/:id", (req, res, next) => {
 
 //DELETE an organization
 router.delete("/:id",(req, res, next) => {
-    clientdata.findOneAndRemove(
+    organdata.findOneAndRemove(
         { _id: req.params.id },
         req.body,
         (error, data) => {
