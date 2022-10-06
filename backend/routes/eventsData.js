@@ -1,4 +1,5 @@
 const express = require("express");
+const { now } = require("mongoose");
 const router = express.Router();
 
 //importing data model schemas
@@ -62,6 +63,42 @@ router.get("/client/:id", (req, res, next) => {
                 res.json(data);
             }
         }
+    );
+});
+
+// GET aggregated list of events in the last two months and the counts of their attendees array
+router.get("/dash/", (req, res, next) => {
+    // Adds a 0 to a one digit number
+    // https://electrictoolbox.com/pad-number-two-digits-javascript/
+    function td (number){
+        return (number < 10? '0': '') + number
+    }
+    // turning current date in to a string
+    let currentDate = new Date();
+    let cDay = currentDate.getDate();
+    let pMonth = currentDate.getMonth() -2; // Supposed to be +1 but need to -3 to get 2 months
+    let cMonth = currentDate.getMonth() +1;
+    let cYear = currentDate.getFullYear();
+    let pDate = cYear+"-"+pMonth+"-"+td(cDay);
+    let cDate = cYear+"-"+cMonth+"-"+td(cDay);
+    eventdata.aggregate([
+        {
+            $match:{$and:[{date:{$gte:new Date(pDate)}},{date:{$lte: new Date(cDate)}}]}
+        },{
+            $project:{
+                _id: 0, // Removes id property
+                eventName: 1, // Adds eventName property
+                // Adds attendess count
+                numberOfAttendees:{$cond:{if:{$isArray:"$attendees"},then:{$size:"$attendees"}, else:"NA"}}
+            }
+        }
+    ],(error, data) => {
+        if (error) {
+            return next(error);
+        } else {
+            res.json(data);
+        }
+    }
     );
 });
 
