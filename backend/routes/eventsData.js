@@ -65,6 +65,11 @@ router.get("/client/:id", (req, res, next) => {
     );
 });
 
+// GET aggregated list of events in the last two months and the counts of their attendees array
+router.get("/dash/", (req, res, next) => { 
+    
+});
+
 //POST
 router.post("/", (req, res, next) => { 
     eventdata.create( 
