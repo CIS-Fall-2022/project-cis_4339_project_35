@@ -73,7 +73,6 @@ router.get("/dash/", (req, res, next) => {
     let cMonth = currentDate.getMonth() +1;
     let cYear = currentDate.getFullYear();
     let fDate = cYear+"-"+cMonth+"-"+cDay;
-    console.log(new Date(fDate));
     eventdata.aggregate([
         {
             $match:{date:new Date(fDate)}
