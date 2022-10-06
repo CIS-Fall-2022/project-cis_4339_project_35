@@ -68,8 +68,16 @@ router.get("/client/:id", (req, res, next) => {
 
 // GET aggregated list of events in the last two months and the counts of their attendees array
 router.get("/dash/", (req, res, next) => {
+    let currentDate = new Date();
+    let cDay = currentDate.getDate();
+    let cMonth = currentDate.getMonth() +1;
+    let cYear = currentDate.getFullYear();
+    let fDate = cYear+"-"+cMonth+"-"+cDay;
+    console.log(new Date(fDate));
     eventdata.aggregate([
         {
+            $match:{date:new Date(fDate)}
+        },{
             $project:{
                 _id: 0,
                 eventName: 1,
