@@ -76,13 +76,15 @@ router.get("/dash/", (req, res, next) => {
     // turning current date in to a string
     let currentDate = new Date();
     let cDay = currentDate.getDate();
-    let cMonth = currentDate.getMonth() -2; // Supposed to be +1 but need to -3 to get 2 months
+    let pMonth = currentDate.getMonth() -2; // Supposed to be +1 but need to -3 to get 2 months
+    let cMonth = currentDate.getMonth() +1;
     let cYear = currentDate.getFullYear();
-    let fDate = cYear+"-"+cMonth+"-"+td(cDay);
+    let pDate = cYear+"-"+pMonth+"-"+td(cDay);
+    let cDate = cYear+"-"+cMonth+"-"+td(cDay);
 
     eventdata.aggregate([
         {
-            $match:{date:{$gte:new Date(fDate)}}
+            $match:{$and:[{date:{$gte:new Date(pDate)}},{date:{$lte: new Date(cDate)}}]}
         },{
             $project:{
                 _id: 0, // Removes id property
