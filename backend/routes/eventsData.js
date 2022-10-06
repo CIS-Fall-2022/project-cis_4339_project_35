@@ -1,4 +1,5 @@
 const express = require("express");
+const { now } = require("mongoose");
 const router = express.Router();
 
 //importing data model schemas
@@ -66,8 +67,22 @@ router.get("/client/:id", (req, res, next) => {
 });
 
 // GET aggregated list of events in the last two months and the counts of their attendees array
-router.get("/dash/", (req, res, next) => { 
-    
+router.get("/dash/", (req, res, next) => {
+    eventdata.aggregate([
+        {
+            $project:{
+                eventName: 1,
+                numberOfAttendees:{$cond:{if:{$isArray:"$attendees"},then:{$size:"$attendees"}, else:"NA"}}
+            }
+        }
+    ],(error, data) => {
+        if (error) {
+            return next(error);
+        } else {
+            res.json(data);
+        }
+    }
+    );
 });
 
 //POST
