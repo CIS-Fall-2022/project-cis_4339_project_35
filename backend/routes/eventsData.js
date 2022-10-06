@@ -68,21 +68,26 @@ router.get("/client/:id", (req, res, next) => {
 
 // GET aggregated list of events in the last two months and the counts of their attendees array
 router.get("/dash/", (req, res, next) => {
+    // Adds a 0 to a one digit number
+    // https://electrictoolbox.com/pad-number-two-digits-javascript/
     function td (number){
         return (number < 10? '0': '') + number
     }
+    // turning current date in to a string
     let currentDate = new Date();
     let cDay = currentDate.getDate();
-    let cMonth = currentDate.getMonth() +1;
+    let cMonth = currentDate.getMonth() -2; // Supposed to be +1 but need to -3 to get 2 months
     let cYear = currentDate.getFullYear();
     let fDate = cYear+"-"+cMonth+"-"+td(cDay);
+
     eventdata.aggregate([
         {
-            $match:{date:new Date(fDate)}
+            $match:{date:{$gte:new Date(fDate)}}
         },{
             $project:{
-                _id: 0,
-                eventName: 1,
+                _id: 0, // Removes id property
+                eventName: 1, // Adds eventName property
+                // Adds attendess count
                 numberOfAttendees:{$cond:{if:{$isArray:"$attendees"},then:{$size:"$attendees"}, else:"NA"}}
             }
         }
