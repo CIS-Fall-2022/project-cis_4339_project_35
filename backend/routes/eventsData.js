@@ -71,6 +71,7 @@ router.get("/dash/", (req, res, next) => {
     eventdata.aggregate([
         {
             $project:{
+                _id: 0,
                 eventName: 1,
                 numberOfAttendees:{$cond:{if:{$isArray:"$attendees"},then:{$size:"$attendees"}, else:"NA"}}
             }
