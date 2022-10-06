@@ -17,5 +17,5 @@ cd frontend
 ```
 Follow instructions in frontend README
 
-Mongo URL String: mongodb+srv://group35:<password>@cluster0.oe4f991.mongodb.net/test
+MongoDB Atlas cloud URL String: mongodb+srv://group35:<password>@cluster0.oe4f991.mongodb.net/test
 password is: cis4339
