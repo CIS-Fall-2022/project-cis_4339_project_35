@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const morgan = require("morgan"); //better debugging
+const morgan = require("morgan"); //better 
 const cors = require("cors");
 //allow using a .env file
 require("dotenv").config();   
