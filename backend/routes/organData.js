@@ -31,7 +31,7 @@ router.get("/id/:id", (req, res, next) => {
     );
 });
 
-//GET entries based on search query
+//GET entries based on search 
 router.get("/search/", (req, res, next) => { 
     let dbQuery = "";
     if (req.query["searchBy"] === 'name') {
