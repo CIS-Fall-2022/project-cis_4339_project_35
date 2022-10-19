@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 //collection for clientData
 let clientDataSchema = new Schema({
-    _id: { type: String, default: uuid.v1 }
+    _id: { type: String, default: uuid.v1 },
     firstName: {
         type: String,
         require: true
