@@ -191,17 +191,24 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
           <div class="flex justify-between mt-10 mr-20">
             <button
-              @click="handleEventUpdate"
-              type="submit"
-              class="bg-red-700 text-white rounded"
-            >Update Event</button>
-          </div>
-          <div class="flex justify-between mt-10 mr-20">
-            <button
               type="reset"
               class="border border-red-700 bg-white text-red-700 rounded"
               @click="$router.go(-1)"
             >Go back</button>
+          </div>
+          <div class="flex justify-between mt-10 mr-20">
+            <button
+              @click="handleEventUpdate"
+              type="submit"
+              class="bg-blue-700 text-white rounded"
+            >Update Event</button>
+          </div>
+          <div class="flex justify-between mt-10 mr-20">
+            <button
+              @click="handleEventDelete"
+              type="submit"
+              class="bg-red-700 text-white rounded"
+            >Delete Event</button>
           </div>
         </div>
 
@@ -315,6 +322,16 @@ export default {
       let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/${this.id}`;
       axios.put(apiURL, this.event).then(() => {
         alert("Update has been saved.");
+        this.$router.back().catch((error) => {
+          console.log(error);
+        });
+      });
+    },
+    handleEventDelete() {
+      this.event.services = this.checkedServices;
+      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/${this.id}`;
+      axios.delete(apiURL, this.event).then(() => {
+        alert("Event Deleted.");
         this.$router.back().catch((error) => {
           console.log(error);
         });

@@ -42,15 +42,17 @@
         <div></div>
         <div class="mt-5 grid-cols-2">
           <button
+            class="bg-blue-700 text-white rounded"
+            @click="handleSubmitForm"
+            type="submit"
+          >Search Event</button>
+        </div>
+        <div class="mt-5 grid-cols-2">
+          <button
             class="mr-10 border border-red-700 bg-white text-red-700 rounded"
             @click="clearSearch"
             type="submit"
           >Clear Search</button>
-          <button
-            class="bg-red-700 text-white rounded"
-            @click="handleSubmitForm"
-            type="submit"
-          >Search Event</button>
         </div>
       </div>
     </div>
