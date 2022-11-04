@@ -336,23 +336,28 @@ export default {
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
           <div class="flex justify-between mt-10 mr-20">
             <button
+              type="reset"
+              class="border border-red-700 bg-white text-red-700 rounded"
+              @click="$router.go(-1)"
+            >Go back</button>
+          </div>
+          <div class="flex justify-between mt-10 mr-20">
+            <!--Update Button-->
+            <button
               @click="handleClientUpdate"
               type="submit"
-              class="bg-red-700 text-white rounded"
+              class="bg-blue-700 text-white rounded"
             >Update Client</button>
+          </div>
+          <div class="flex justify-between mt-10 mr-20">
+            <!--Delete Button-->
             <button
               @click="handleClientDelete"
               type="submit"
               class="bg-red-700 text-white rounded"
             >Delete Client</button>
           </div>
-          <div class="flex justify-between mt-10 mr-20">
-            <button
-              type="reset"
-              class="border border-red-700 bg-white text-red-700 rounded"
-              @click="$router.go(-1)"
-            >Go back</button>
-          </div>
+
         </div>
 
         <hr class="mt-10 mb-10" />
