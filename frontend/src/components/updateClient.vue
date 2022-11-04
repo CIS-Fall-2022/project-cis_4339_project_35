@@ -104,6 +104,15 @@ export default {
         });
       });
     },
+    handleClientDelete() {
+      let apiURL = import.meta.env.VITE_ROOT_API + `/clientdata/${this.id}`;
+      axios.delete(apiURL, this.client).then(() => {
+        alert("Client Deleted");
+        this.$router.back().catch((error) => {
+          console.log(error);
+        });
+      });
+    },
     addToEvent() {
       this.eventsChosen.forEach((event) => {
         let apiURL =
@@ -331,6 +340,11 @@ export default {
               type="submit"
               class="bg-red-700 text-white rounded"
             >Update Client</button>
+            <button
+              @click="handleClientDelete"
+              type="submit"
+              class="bg-red-700 text-white rounded"
+            >Delete Client</button>
           </div>
           <div class="flex justify-between mt-10 mr-20">
             <button
