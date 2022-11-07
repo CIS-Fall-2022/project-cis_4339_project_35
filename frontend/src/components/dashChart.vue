@@ -14,6 +14,7 @@ export default {
   name: 'BarChart',
   components: { Bar },
   data() {
+    // https://dev.to/ramonak/javascript-how-to-access-the-return-value-of-a-promise-object-1bck
     function getNames () {
       return axios.get(apiURL)
       .then(resp => {
@@ -42,10 +43,24 @@ export default {
       return Promise.reject(error);
       });
     }
-    const eventNames = getNames();
-    const eventAttend = getAttend();
-    console.log(eventNames);
-    console.log(eventAttend);
+    const namePromise = getNames();
+    const eventNames = () => {
+      namePromise.then((a)=>{
+        console.log(a)
+        //return a
+      });
+    };
+    eventNames()
+    //console.log(eventNames());
+    const numPromise = getAttend();
+    const numAttendees= () => {
+      numPromise.then((a)=>{
+        console.log(a)
+        //return a
+    });
+    };
+    numAttendees()
+    //console.log(numAttendees());
     return {
       chartData: {
         labels: [ 'January', 'February', 'March'],
