@@ -52,7 +52,9 @@
       </section>
       <div>
         <router-view></router-view>
-        <BarChart />
+        <Suspense>
+          <BarChart />
+        </Suspense>
       </div>
     </div>
   </main>
