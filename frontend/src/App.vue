@@ -52,14 +52,17 @@
       </section>
       <div>
         <router-view></router-view>
+        <BarChart />
       </div>
     </div>
   </main>
 </template>
 
 <script>
+import BarChart from '../src/components/dashChart.vue'
 export default {
   name: "App",
+  components: { BarChart }
 };
 </script>
 
