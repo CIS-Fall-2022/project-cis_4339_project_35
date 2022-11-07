@@ -52,9 +52,9 @@
       </section>
       <div>
         <router-view></router-view>
-        <Suspense>
-          <BarChart />
-        </Suspense>
+        <Suspense> <!--Suspense is needed to use async-->
+          <BarChart /> <!--Chart is Here-->
+        </Suspense><!--Suspense is needed to use async-->
       </div>
     </div>
   </main>
