@@ -1,5 +1,5 @@
 <template>
-  <Bar  :chart-data="chartData"/> <!--Chart-->
+  <Bar :chart-data="chartData" :width="500" :height="196"/> <!--Chart-->
 </template>
   
 <script>
@@ -50,6 +50,10 @@
               data: numPromise // number of attendees
             }
           ]
+        },
+        chartOptions:{
+          responsive: false,
+          maintainAspectRatio: false
         }
       }
     }
