@@ -52,19 +52,14 @@
       </section>
       <div>
         <router-view></router-view>
-        <Suspense> <!--Suspense is needed to use async-->
-          <BarChart /> <!--Chart is Here-->
-        </Suspense><!--Suspense is needed to use async-->
       </div>
     </div>
   </main>
 </template>
 
 <script>
-import BarChart from '../src/components/dashChart.vue'
 export default {
   name: "App",
-  components: { BarChart }
 };
 </script>
 
