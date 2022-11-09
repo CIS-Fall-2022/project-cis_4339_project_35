@@ -48,6 +48,16 @@
               label: 'Number of Attendees',
               backgroundColor: '#f87979',
               data: numPromise // number of attendees
+              options: {
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero: true,
+                      callback: function(value) {if (value % 1 === 0) {return value;}}
+                    }
+                  }]
+                }
+              }
             }
           ]
         },
