@@ -1,5 +1,5 @@
 <template>
-  <Bar :chart-data="chartData" :width="500" :height="196"/> <!--Chart-->
+  <Bar :chart-data="chartData" :chart-options="chartOptions" :width="500" :height="196"/> <!--Chart-->
 </template>
   
 <script>
@@ -48,22 +48,18 @@
               label: 'Number of Attendees',
               backgroundColor: '#f87979',
               data: numPromise, // number of attendees
-              options: {
-                scales: {
-                  yAxes: [{
-                    ticks: {
-                      beginAtZero: true,
-                      callback: function(value) {if (value % 1 === 0) {return value;}}
-                    }
-                  }]
-                }
-              }
             }
-          ]
+          ],
         },
         chartOptions:{
-          responsive: false,
-          maintainAspectRatio: false
+          scales: {
+            yAxis: 
+              {
+                ticks: {
+                  stepSize: 1
+                }
+              }
+          }
         }
       }
     }
