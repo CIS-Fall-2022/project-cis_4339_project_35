@@ -47,7 +47,7 @@
             {
               label: 'Number of Attendees',
               backgroundColor: '#f87979',
-              data: numPromise // number of attendees
+              data: numPromise, // number of attendees
               options: {
                 scales: {
                   yAxes: [{
