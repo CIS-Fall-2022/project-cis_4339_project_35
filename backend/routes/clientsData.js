@@ -5,7 +5,7 @@ const router = express.Router();
 let { clientdata } = require("../models/models"); 
 let { eventdata } = require("../models/models"); 
 
-//GET all entries
+//GET all client entries
 router.get("/", (req, res, next) => { 
     clientdata.find( 
         (error, data) => {
@@ -18,7 +18,7 @@ router.get("/", (req, res, next) => {
     ).sort({ 'updatedAt': -1 }).limit(10);
 });
 
-//GET single entry by ID
+//GET a single client entry by ID
 router.get("/id/:id", (req, res, next) => {
     clientdata.find( 
         { _id: req.params.id }, 
@@ -32,7 +32,7 @@ router.get("/id/:id", (req, res, next) => {
     );
 });
 
-//GET entries based on search query
+//GET API to retrieve client entries based on search query
 //Ex: '...?firstName=Bob&lastName=&searchBy=name' 
 router.get("/search/", (req, res, next) => { 
     let dbQuery = "";
@@ -60,7 +60,7 @@ router.get("/events/:id", (req, res, next) => {
     
 });
 
-//POST
+//POST API to create a new client
 router.post("/", (req, res, next) => { 
     clientdata.create( 
         req.body,
@@ -77,7 +77,7 @@ router.post("/", (req, res, next) => {
     clientdata.createdAt instanceof Date;
 });
 
-//PUT update (make sure req body doesn't have the id)
+//PUT API to update a client 
 router.put("/:id", (req, res, next) => { 
     clientdata.findOneAndUpdate( 
         { _id: req.params.id }, 
@@ -92,7 +92,7 @@ router.put("/:id", (req, res, next) => {
     );
 });
 
-//DELETE
+//DELETE API to remove a client 
 router.delete("/:id",(req, res, next) => {
     clientdata.findOneAndRemove(
         { _id: req.params.id },
