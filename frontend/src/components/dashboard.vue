@@ -7,7 +7,7 @@
   </main>
 </template>
 <script>
-import BarChart from '../components/dashChart.vue'
+import BarChart from './dashChart.vue'
 export default {
   components: { BarChart },
   methods: {

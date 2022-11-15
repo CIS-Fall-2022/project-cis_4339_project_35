@@ -62,11 +62,3 @@ export default {
   name: "App",
 };
 </script>
-
-<style>
-#_container {
-  background-color: #c8102e;
-  color: white;
-  padding: 18px;
-}
-</style>
