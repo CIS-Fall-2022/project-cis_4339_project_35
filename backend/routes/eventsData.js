@@ -5,7 +5,7 @@ const router = express.Router();
 //importing data model schemas
 let { eventdata } = require("../models/models"); 
 
-//GET all entries
+//GET all event entries 
 router.get("/", (req, res, next) => { 
     eventdata.find( 
         (error, data) => {
@@ -18,7 +18,7 @@ router.get("/", (req, res, next) => {
     ).sort({ 'updatedAt': -1 }).limit(10);
 });
 
-//GET single entry by ID
+//GET single event entry by ID
 router.get("/id/:id", (req, res, next) => { 
     eventdata.find({ _id: req.params.id }, (error, data) => {
         if (error) {
@@ -29,7 +29,7 @@ router.get("/id/:id", (req, res, next) => {
     })
 });
 
-//GET entries based on search query
+//GET event entries based on search query
 //Ex: '...?eventName=Food&searchBy=name' 
 router.get("/search/", (req, res, next) => { 
     let dbQuery = "";
@@ -44,6 +44,7 @@ router.get("/search/", (req, res, next) => {
         dbQuery, 
         (error, data) => { 
             if (error) {
+                console.log("Nothing found using provided information");
                 return next(error);
             } else {
                 res.json(data);
@@ -58,6 +59,7 @@ router.get("/client/:id", (req, res, next) => {
         { attendees: req.params.id }, 
         (error, data) => { 
             if (error) {
+                console.log("Could not find client(s) event information");
                 return next(error);
             } else {
                 res.json(data);
@@ -102,12 +104,13 @@ router.get("/dash/", (req, res, next) => {
     );
 });
 
-//POST
+//POST API to create a new event
 router.post("/", (req, res, next) => { 
     eventdata.create( 
         req.body, 
         (error, data) => { 
             if (error) {
+                console.log(error);
                 return next(error);
             } else {
                 res.json(data);
@@ -116,13 +119,14 @@ router.post("/", (req, res, next) => {
     );
 });
 
-//PUT
+//PUT API to update an existing event
 router.put("/:id", (req, res, next) => {
     eventdata.findOneAndUpdate(
         { _id: req.params.id },
         req.body,
         (error, data) => {
             if (error) {
+                console.log(error);
                 return next(error);
             } else {
                 res.json(data);
@@ -133,7 +137,7 @@ router.put("/:id", (req, res, next) => {
 
 //PUT add attendee to event
 router.put("/addAttendee/:id", (req, res, next) => {
-    //only add attendee if not yet signed uo
+    //only add attendee if not yet signed up
     eventdata.find( 
         { _id: req.params.id, attendees: req.body.attendee }, 
         (error, data) => { 
@@ -146,7 +150,7 @@ router.put("/addAttendee/:id", (req, res, next) => {
                         { $push: { attendees: req.body.attendee } },
                         (error, data) => {
                             if (error) {
-                                consol
+                                console.log("Client is already signed up");
                                 return next(error);
                             } else {
                                 res.json(data);
@@ -168,6 +172,7 @@ router.delete("/:id", (req, res, next) =>{
         req.body,
         (error, data) => {
             if (error) {
+                console.log("Could not find id.");
                 return next(error);
             } else {
                 res.json(data);

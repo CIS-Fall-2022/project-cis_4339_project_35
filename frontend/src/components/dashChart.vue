@@ -20,7 +20,7 @@
           for (const key in resp.data) {
           eventNames.push(resp.data[key].eventName)
           }
-          return eventNames
+          return eventNames // Gathering names of all events for the x-axis variables
         }).catch(error => {
         console.log(error);
         return Promise.reject(error);
@@ -32,7 +32,7 @@
           for (const key in resp.data) {
           numAttend.push(resp.data[key].numberOfAttendees)
           }
-          return numAttend
+          return numAttend // Gathering the count of attendees for each event for the y-axis data 
         }).catch(error => {
         console.log(error);
         return Promise.reject(error);
@@ -56,7 +56,7 @@
             yAxis: 
               {
                 ticks: {
-                  stepSize: 1
+                  stepSize: 1 //y-axis ticks are shown in increments of 1 as whole numbers
                 }
               }
           }
