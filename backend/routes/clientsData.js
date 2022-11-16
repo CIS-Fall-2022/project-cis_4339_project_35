@@ -25,6 +25,9 @@ router.get("/id/:id", (req, res, next) => {
         (error, data) => {
             if (error) {
                 return next(error);
+            } else if(Object.keys(data).length === 0){
+                res.status(404).send("Could not find client(s) information with that ID!");
+                console.log("Could not find client(s) information with that ID!");
             } else {
                 res.json(data);
             }
@@ -85,6 +88,9 @@ router.put("/:id", (req, res, next) => {
         (error, data) => {
             if (error) {
                 return next(error);
+            } else if(data === null){ // error handler response to not finding an ID
+                res.status(404).send("Could not find client(s) information with that ID!");
+                console.log("Could not find client(s) information with that ID!"); 
             } else {
                 res.json(data);
             }
@@ -100,7 +106,11 @@ router.delete("/:id",(req, res, next) => {
         (error, data) => {
             if (error) {
                 return next(error);
+            } else if (data === null){
+                res.status(404).send("Could not find client with that ID!");
+                console.log("Could not find client with that ID!");
             } else {
+                console.log("Successfully removed the client!");
                 res.json(data);
             }
         }

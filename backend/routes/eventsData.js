@@ -23,6 +23,9 @@ router.get("/id/:id", (req, res, next) => {
     eventdata.find({ _id: req.params.id }, (error, data) => {
         if (error) {
             return next(error)
+        } else if(Object.keys(data).length === 0){
+            res.status(404).send("Could not find event(s) information with that ID!");
+            console.log("Could not find event(s) information with that ID!");
         } else {
             res.json(data)
         }
@@ -44,7 +47,6 @@ router.get("/search/", (req, res, next) => {
         dbQuery, 
         (error, data) => { 
             if (error) {
-                console.log("Nothing found using provided information");
                 return next(error);
             } else {
                 res.json(data);
@@ -59,8 +61,11 @@ router.get("/client/:id", (req, res, next) => {
         { attendees: req.params.id }, 
         (error, data) => { 
             if (error) {
-                console.log("Could not find client(s) event information");
+                
                 return next(error);
+            } else if(Object.keys(data).length === 0){
+                res.status(404).send("Could not find event(s) information for that client!");
+                console.log("Could not find event(s) information for that client!")
             } else {
                 res.json(data);
             }
@@ -128,6 +133,9 @@ router.put("/:id", (req, res, next) => {
             if (error) {
                 console.log(error);
                 return next(error);
+            } else if (data === null){
+                res.status(404).send("Could not find event with that ID!");
+                console.log("Could not find event with that ID!");
             } else {
                 res.json(data);
             }
@@ -150,7 +158,6 @@ router.put("/addAttendee/:id", (req, res, next) => {
                         { $push: { attendees: req.body.attendee } },
                         (error, data) => {
                             if (error) {
-                                console.log("Client is already signed up");
                                 return next(error);
                             } else {
                                 res.json(data);
@@ -165,16 +172,18 @@ router.put("/addAttendee/:id", (req, res, next) => {
     
 });
 
-//DELETE
+//DELETE an event
 router.delete("/:id", (req, res, next) =>{
     eventdata.findOneAndRemove(
         {_id: req.params.id},
         req.body,
         (error, data) => {
-            if (error) {
-                console.log("Could not find id.");
+            if (error) {            
                 return next(error);
-            } else {
+            } else if (data === null){
+                res.status(404).send("Could not find event with that ID!");
+                console.log("Could not find event with that ID!");
+            } else { 
                 res.json(data);
             }
         }
