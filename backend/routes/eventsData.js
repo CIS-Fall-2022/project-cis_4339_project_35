@@ -65,7 +65,7 @@ router.get("/client/:id", (req, res, next) => {
                 return next(error);
             } else if(Object.keys(data).length === 0){
                 res.status(404).send("Could not find event(s) information for that client!");
-                console.log("Could not find event(s) information for that client!")
+                //console.log("Could not find event(s) information for that client!")
             } else {
                 res.json(data);
             }
@@ -149,8 +149,8 @@ router.put("/addAttendee/:id", (req, res, next) => {
     eventdata.find( 
         { _id: req.params.id, attendees: req.body.attendee }, 
         (error, data) => { 
-            if (error) {
-                return next(error);
+            if (error) {  
+                return next(error);             
             } else {
                 if (data.length == 0) {
                     eventdata.updateOne(
@@ -158,14 +158,20 @@ router.put("/addAttendee/:id", (req, res, next) => {
                         { $push: { attendees: req.body.attendee } },
                         (error, data) => {
                             if (error) {
+                                console.log(error);
                                 return next(error);
-                            } else {
+                            } else {  
                                 res.json(data);
                             }
                         }
                     );
                 }
-                
+                 // error handling for when a client is already signed up for the selected event
+                else {
+                    res.status(404).send("Client is already signed up for that event!");
+                    console.log("Client is already signed up for that event!");
+                }
+
             }
         }
     );
