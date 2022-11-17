@@ -1,16 +1,16 @@
 <template>
   <main>
     <div>
-      <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">Update Event</h1>
+      <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">Update Event:</h1>
     </div>
     <div class="px-10 py-20">
       <form @submit.prevent="handleSubmitForm">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
-          <h2 class="text-2xl font-bold">Event Details</h2>
+          <h2 class="text-2xl font-bold">Event Details:</h2>
           <!-- form field -->
           <div class="flex flex-col">
             <label class="block">
-              <span class="text-gray-700">Event Name</span>
+              <span class="text-gray-700">Event Name:</span>
               <span style="color:#ff0000">*</span>
               <input
                 type="text"
@@ -30,7 +30,7 @@
           <!-- form field -->
           <div class="flex flex-col">
             <label class="block">
-              <span class="text-gray-700">Date</span>
+              <span class="text-gray-700">Date:</span>
               <span style="color:#ff0000">*</span>
               <input
                 class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -52,7 +52,7 @@
           <!-- form field -->
           <div class="flex flex-col">
             <label class="block">
-              <span class="text-gray-700">Description</span>
+              <span class="text-gray-700">Description:</span>
               <textarea
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 rows="2"
@@ -65,7 +65,7 @@
           <div></div>
           <!-- form field -->
           <div class="flex flex-col grid-cols-3">
-            <label>Services Offered at Event</label>
+            <label>Services Offered at Event:</label>
             <div>
               <label for="familySupport" class="inline-flex items-center">
                 <input
@@ -76,7 +76,7 @@
                   class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
                   notchecked
                 />
-                <span class="ml-2">Family Support</span>
+                <span class="ml-2">Family Support:</span>
               </label>
             </div>
             <div>
@@ -89,7 +89,7 @@
                   class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
                   notchecked
                 />
-                <span class="ml-2">Adult Education</span>
+                <span class="ml-2">Adult Education:</span>
               </label>
             </div>
             <div>
@@ -102,7 +102,7 @@
                   class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
                   notchecked
                 />
-                <span class="ml-2">Youth Services Program</span>
+                <span class="ml-2">Youth Services Program:</span>
               </label>
             </div>
             <div>
@@ -115,7 +115,7 @@
                   class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
                   notchecked
                 />
-                <span class="ml-2">Early Childhood Education</span>
+                <span class="ml-2">Early Childhood Education:</span>
               </label>
             </div>
           </div>
