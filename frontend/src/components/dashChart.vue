@@ -6,7 +6,7 @@
         <thead class="bg-[#f87171]">
           <tr>
             <th>Event Name</th>
-            <th>Number of Attendees</th>
+            <th>Number of Attendees:</th>
           </tr>
         </thead>
         <tbody class="bg-[#f87171]">

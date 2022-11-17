@@ -1,19 +1,19 @@
 <template>
   <main>
     <div>
-      <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">List of Events</h1>
+      <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">List of Events:</h1>
     </div>
     <div class="px-10 pt-20">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
-        <h2 class="text-2xl font-bold">Search Event By</h2>
+        <h2 class="text-2xl font-bold">Search Event By:</h2>
         <!-- Displays Client Name search field -->
         <div class="flex flex-col">
           <select
             class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             v-model="searchBy"
           >
-            <option value="Event Name">Event Name</option>
-            <option value="Event Date">Event Date</option>
+            <option value="Event Name">Event Name:</option>
+            <option value="Event Date">Event Date:</option>
           </select>
         </div>
         <div class="flex flex-col" v-if="searchBy === 'Event Name'">
