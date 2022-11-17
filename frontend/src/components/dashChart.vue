@@ -1,23 +1,33 @@
 <template>
   <div class="grid place-items-center">
-    <Bar class=" min-w-full shadow-md rounded" 
-    :chart-data="chartData" :chart-options="chartOptions" :width="100" :height="30"/> <!--Chart-->
-      <table class=" min-w-full shadow-md rounded border-separate border-spacing-2 border border-slate-400">
-        <thead class="bg-[#f87171]">
-          <tr>
-            <th>Event Name</th>
-            <th>Number of Attendees:</th>
-          </tr>
-        </thead>
-        <tbody class="bg-[#f87171]">
-          <td class="border border-slate-300">
-            <tr v-for="(nam,index) in names" v-bind:key="index">{{nam}}</tr>
-          </td>
-          <td class="border border-slate-300">
-            <tr v-for="(num,index) in numbers" v-bind:key="index">{{num}}</tr>
-          </td>
-        </tbody>
-      </table>
+    <!--Chart-->
+    <Bar class="shadow-md rounded" 
+    :chart-data="chartData"
+    :chart-options="chartOptions"
+    :width="1080"
+    :height="180"
+    />
+    <!--Table-->
+    <table class=" min-w-full shadow-md rounded border-separate border-spacing-1 border border-slate-400">
+      <thead class="bg-[#f87171]">
+        <tr>
+          <!--Table Headers-->
+          <th>Event Name</th>
+          <th>Number of Attendees</th>
+        </tr>
+      </thead>
+      <tbody class="bg-[#f87171]">
+        <!--Table Body-->
+        <td class="border border-slate-300">
+          <!--NAMES-->
+          <tr v-for="(nam,index) in names" v-bind:key="index">{{nam}}</tr>
+        </td>
+        <td class="border border-slate-300">
+          <!--NUMBER OF ATTENDEES-->
+          <tr v-for="(num,index) in numbers" v-bind:key="index">{{num}}</tr>
+        </td>
+      </tbody>
+    </table>
   </div>
 </template>
   
@@ -60,6 +70,7 @@
       const namePromise = await getNames(); // PROMISE - waiting to get array of event names
       const numPromise = await getNums();   // PROMISE - waiting to get array of number of Attendees
       return {
+        /*Using the Promised names and numbers for both the Table and the Chart */
         names : namePromise,
         numbers : numPromise,
         chartData: {
