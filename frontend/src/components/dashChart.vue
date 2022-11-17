@@ -1,5 +1,24 @@
 <template>
-  <Bar :chart-data="chartData" :chart-options="chartOptions" :width="500" :height="196"/> <!--Chart-->
+  <div class="grid place-items-center">
+    <Bar class=" min-w-full shadow-md rounded" 
+    :chart-data="chartData" :chart-options="chartOptions" :width="100" :height="30"/> <!--Chart-->
+      <table class=" min-w-full shadow-md rounded border-separate border-spacing-2 border border-slate-400">
+        <thead class="bg-[#f87171]">
+          <tr>
+            <th>Event Name</th>
+            <th>Number of Attendees</th>
+          </tr>
+        </thead>
+        <tbody class="bg-[#f87171]">
+          <td class="border border-slate-300">
+            <tr v-for="(nam,index) in names" v-bind:key="index">{{nam}}</tr>
+          </td>
+          <td class="border border-slate-300">
+            <tr v-for="(num,index) in numbers" v-bind:key="index">{{num}}</tr>
+          </td>
+        </tbody>
+      </table>
+  </div>
 </template>
   
 <script>
@@ -41,6 +60,8 @@
       const namePromise = await getNames(); // PROMISE - waiting to get array of event names
       const numPromise = await getNums();   // PROMISE - waiting to get array of number of Attendees
       return {
+        names : namePromise,
+        numbers : numPromise,
         chartData: {
           labels: namePromise, // event names
           datasets: [
