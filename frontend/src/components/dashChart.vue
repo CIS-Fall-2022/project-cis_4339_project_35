@@ -7,7 +7,7 @@
   import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
   import axios from 'axios'
 
-  let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/dash/`; //API URL for Chart
+  let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/dash/`; //API URL for Chart process included
   ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
   export default {
@@ -30,7 +30,7 @@
         return axios.get(apiURL).then(resp => {
           const numAttend = []
           for (const key in resp.data) {
-          numAttend.push(resp.data[key].numberOfAttendees)
+          numAttend.push(resp.data[key].numberOfAttendees)// variable holding number of attendees 
           }
           return numAttend // Gathering the count of attendees for each event for the y-axis data 
         }).catch(error => {
