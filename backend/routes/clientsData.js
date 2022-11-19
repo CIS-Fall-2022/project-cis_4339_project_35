@@ -115,11 +115,12 @@ router.delete("/:id",(req, res, next) => {
     clientdata.findOneAndRemove(
         { _id: req.params.id },
         req.body,
-        (error) => {
+        (error,data) => {
             if (error) {
-                console.log(error);
+                return next(error);
             } else {
                 console.log("Successfully removed the client!");
+                res.json(data);
             }
         }
     ),
@@ -127,11 +128,12 @@ router.delete("/:id",(req, res, next) => {
         {"attendees": req.params.id},
         {$pull: {attendees: req.params.id}},
         req.body,
-        (error) => {
+        (error, data) => {
             if (error) {
-                console.log(error);
+                return next(error);
             } else {
                 console.log("Successfully removed the client!");
+                res.json(data)
             }
         }
     );
