@@ -115,15 +115,23 @@ router.delete("/:id",(req, res, next) => {
     clientdata.findOneAndRemove(
         { _id: req.params.id },
         req.body,
-        (error, data) => {
+        (error) => {
             if (error) {
-                return next(error);
-            } else if (data === null){
-                res.status(404).send("Could not find client with that ID!");
-                console.log("Could not find client with that ID!");
+                console.log(error);
             } else {
                 console.log("Successfully removed the client!");
-                res.json(data);
+            }
+        }
+    ),
+    eventdata.updateMany(
+        {"attendees": req.params.id},
+        {$pull: {attendees: req.params.id}},
+        req.body,
+        (error) => {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log("Successfully removed the client!");
             }
         }
     );
