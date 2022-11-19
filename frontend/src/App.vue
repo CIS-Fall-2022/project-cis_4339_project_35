@@ -42,13 +42,8 @@
       </header>
     </div>
     <div class="grow w-4/5">
-      <section
-        class="justify-end items-center h-24 flex"
-        style="
-          background: linear-gradient(250deg, #C8102E 70%, #efecec 50.6%);
-        "
-      >
-        <h1 class="mr-20 text-3xl text-white">Dataplatform</h1>
+      <section class="justify-end items-center h-24 flex" style="background: linear-gradient(250deg, #C8102E 70%, #efecec 50.6%);">
+        <h1 class="mr-20 text-3xl text-white" id="organName">Dataplatform</h1>
       </section>
       <div>
         <router-view></router-view>
@@ -58,7 +53,29 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "App",
+  async mounted(){
+    // https://jasonwatmore.com/post/2022/05/28/vue-3-vite-access-environment-variables-from-dotenv-env
+    // Calling Organization ID from dotenv
+    let orgID = import.meta.env.VITE_ORG_ID;
+    // adding Organization ID to API URL
+    let apiURL = import.meta.env.VITE_ROOT_API + `/organdata/id/`+orgID;
+    // Function to get Name
+    async function getName() {
+      // API Call
+      return axios.get(apiURL).then(resp => {
+        // Since each organization has a unique ID the first one should be the only one
+        return resp.data[0].orgName
+      }).catch(error => {
+        console.log(error);
+        return Promise.reject(error);
+      });
+    }
+    const orgName = await getName(); //PROMISE - Waiting for promise to be kept
+    //https://sebhastian.com/display-javascript-variable-html/
+    document.getElementById("organName").innerHTML=orgName; //Org Name is added to the HTML by id of the element
+  }
 };
 </script>
