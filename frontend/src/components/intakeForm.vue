@@ -1,4 +1,4 @@
-<script>
+<script> // Intake form VueJS file
 import useVuelidate from "@vuelidate/core";
 import { required, email, alpha, numeric } from "@vuelidate/validators";
 import axios from "axios";
