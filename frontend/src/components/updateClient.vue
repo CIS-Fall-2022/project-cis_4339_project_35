@@ -97,21 +97,25 @@ export default {
     },
     handleClientUpdate() {
       let apiURL = import.meta.env.VITE_ROOT_API + `/clientdata/${this.id}`;
+      if (window.confirm("Are you sure you want to update client?")) {
       axios.put(apiURL, this.client).then(() => {
         alert("Update has been saved.");
         this.$router.back().catch((error) => {
           console.log(error);
         });
       });
+    }
     },
     handleClientDelete() {
       let apiURL = import.meta.env.VITE_ROOT_API + `/clientdata/${this.id}`;
-      axios.delete(apiURL, this.client).then(() => {
+      if (window.confirm("Are you sure you want to delete client?")) {
+        axios.delete(apiURL, this.client).then(() => {
         alert("Client Deleted");
-        this.$router.back().catch((error) => {
-          console.log(error);
-        });
+            this.$router.back().catch((error) => {
+        console.log(error);
+          });
       });
+    }
     },
     addToEvent() {
       this.eventsChosen.forEach((event) => {
