@@ -60,7 +60,19 @@ router.get("/search/", (req, res, next) => {
 
 //GET events for a single client
 router.get("/events/:id", (req, res, next) => { 
-    
+    eventdata.find(
+        {attendees: req.params.id },
+        (error, data) => {
+            if (error) {
+                return next(error);
+            } else if(Object.keys(data).length === 0){
+                res.status(404).send("Could not find client(s) information with that ID!");
+                console.log("Could not find client(s) information with that ID!");
+            } else {
+                res.json(data);
+            }
+        }
+    );
 });
 
 //POST API to create a new client
