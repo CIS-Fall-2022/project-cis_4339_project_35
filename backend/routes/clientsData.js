@@ -117,7 +117,7 @@ router.delete("/:id",(req, res, next) => {
         req.body,
         (error,data) => {
             if (error) {
-                return next(error);
+                console.log(error);
             } else {
                 console.log("Successfully removed the client!");
                 res.json(data);
@@ -133,7 +133,6 @@ router.delete("/:id",(req, res, next) => {
                 return next(error);
             } else {
                 console.log("Successfully removed the client!");
-                res.json(data)
             }
         }
     );
