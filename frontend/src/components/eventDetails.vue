@@ -261,7 +261,7 @@ export default {
     return { v$: useVuelidate({ $autoDirty: true }) };
   },
   data() {
-    return {
+    return { // returning variable info
       attendeeIDs: [],
       attendeeData: [],
       checkedServices: [],
@@ -300,7 +300,7 @@ export default {
               import.meta.env.VITE_ROOT_API +
                 `/clientdata/id/${this.attendeeIDs[i]}`
             )
-            .then((resp) => {
+            .then((resp) => { // code to confirm attendee information
               let data = resp.data[0];
               this.attendeeData.push({
                 attendeeID: this.attendeeIDs[i],

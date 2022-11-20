@@ -52,7 +52,7 @@
           return eventNames // Gathering names of all events for the x-axis variables
         }).catch(error => {
         console.log(error);
-        return Promise.reject(error);
+        return Promise.reject(error);// reject promise error
         });
       }
       async function getNums () { //Creates an array that returns the number of attendees from backend data
