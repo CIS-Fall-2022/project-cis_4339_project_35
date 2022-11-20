@@ -17,11 +17,13 @@ let clientDataSchema = new Schema({
         required: true
     },
     email: {
-        type: String
+        type: String,
+        unique: true
     },
     phoneNumbers: {
         type: Array,
-        required: true
+        required: true,
+        unique: true
     },
     address: {
         line1: {
@@ -98,14 +100,17 @@ let organDataSchema = new Schema({
     _id: { type: String, default: uuid.v1 },
     orgName: {
         type: String,
-        require: true
+        require: true,
+        unique: true
     },
     orgEmail: {
         type: String,
-        require: true
+        require: true,
+        unique: true
     },
     orgPhone:{
-        type: String
+        type: String,
+        unique: true
     }
 }, {
     collection: 'organData'
