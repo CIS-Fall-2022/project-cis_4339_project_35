@@ -115,8 +115,9 @@ router.post("/", (req, res, next) => {
         req.body, 
         (error, data) => { 
             if (error) {
-                console.log(error);
-                return next(error);
+
+                console.log("Unable to add event.");
+                res.status(500).send("Unable to add event.");
             } else {
                 res.json(data);
             }
