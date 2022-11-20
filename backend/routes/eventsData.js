@@ -169,7 +169,7 @@ router.put("/addAttendee/:id", (req, res, next) => {
                 }
                  // error handling for when a client is already signed up for the selected event
                 else {
-                    res.status(404).send("Client is already signed up for that event!");
+                    res.status(500).send("Client is already signed up for that event!");
                     console.log("Client is already signed up for that event!");
                 }
 
