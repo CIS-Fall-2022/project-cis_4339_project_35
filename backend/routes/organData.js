@@ -15,4 +15,16 @@ router.get("/id/:id", (req, res, next) => {
         }
     );
 });
+// Trying to get orgVariable to work
+router.get("/", (req, res, next) => {
+    organdata.find( 
+        (error, data) => {
+            if (error) {
+                return next(error);
+            } else {
+                res.json(data);
+            }
+        }
+    );
+});
 module.exports = router;
