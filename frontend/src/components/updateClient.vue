@@ -95,23 +95,28 @@ export default {
     formattedDate(datetimeDB) {
       return DateTime.fromISO(datetimeDB).plus({ days: 1 }).toLocaleString();
     },
-    handleClientUpdate() {
+    handleClientUpdate() { // method used asking to update client
       let apiURL = import.meta.env.VITE_ROOT_API + `/clientdata/${this.id}`;
+      if (window.confirm("Are you sure you want to update client?")) {
       axios.put(apiURL, this.client).then(() => {
         alert("Update has been saved.");
         this.$router.back().catch((error) => {
           console.log(error);
+          alert("Update could not be performed.");
         });
       });
+    }
     },
     handleClientDelete() {
-      let apiURL = import.meta.env.VITE_ROOT_API + `/clientdata/${this.id}`;// client data api added
-      axios.delete(apiURL, this.client).then(() => {
+      let apiURL = import.meta.env.VITE_ROOT_API + `/clientdata/${this.id}`;
+      if (window.confirm("Are you sure you want to delete client?")) {
+        axios.delete(apiURL, this.client).then(() => {
         alert("Client Deleted");
-        this.$router.back().catch((error) => {
-          console.log(error);
-        });
+            this.$router.back().catch((error) => {
+        console.log(error);
+          });
       });
+    }
     },
     addToEvent() {
       this.eventsChosen.forEach((event) => {

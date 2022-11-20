@@ -9,7 +9,7 @@ export default {
   mounted() {
     window.scrollTo(0, 0);
   },
-  data() {
+  data() { // Data to return client information using variables
     return {
       client: {
         firstName: "",
@@ -66,6 +66,7 @@ export default {
           })
           .catch((error) => {
             console.log(error);
+            alert("Client was not succesfully added.");
           });
       }
     },

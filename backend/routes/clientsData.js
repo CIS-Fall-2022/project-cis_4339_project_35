@@ -60,7 +60,19 @@ router.get("/search/", (req, res, next) => {
 
 //GET events for a single client
 router.get("/events/:id", (req, res, next) => { 
-    
+    eventdata.find(
+        {attendees: req.params.id },
+        (error, data) => {
+            if (error) {
+                return next(error);
+            } else if(Object.keys(data).length === 0){
+                res.status(404).send("Could not find client(s) information with that ID!");
+                console.log("Could not find client(s) information with that ID!");
+            } else {
+                res.json(data);
+            }
+        }
+    );
 });
 
 //POST API to create a new client
@@ -69,7 +81,9 @@ router.post("/", (req, res, next) => {
         req.body,
         (error, data) => { 
             if (error) {
-                return next(error);
+
+                console.log("Unable to add Client.");
+                res.status(500).send("Unable to add Client.");
             } else {
                 res.json(data); 
             }
@@ -103,15 +117,24 @@ router.delete("/:id",(req, res, next) => {
     clientdata.findOneAndRemove(
         { _id: req.params.id },
         req.body,
-        (error, data) => {
+        (error,data) => {
             if (error) {
-                return next(error);
-            } else if (data === null){
-                res.status(404).send("Could not find client with that ID!");
-                console.log("Could not find client with that ID!");
+                console.log(error);
             } else {
                 console.log("Successfully removed the client!");
                 res.json(data);
+            }
+        }
+    ),
+    eventdata.updateMany(
+        {"attendees": req.params.id},
+        {$pull: {attendees: req.params.id}},
+        req.body,
+        (error, data) => {
+            if (error) {
+                return next(error);
+            } else {
+                console.log("Successfully removed the client!");
             }
         }
     );

@@ -139,7 +139,7 @@ export default {
         this.queryData = resp.data;
       });
     },
-    editEvent(eventID) {
+    editEvent(eventID) { // code created to edit event using variable eventID
       this.$router.push({ name: "eventdetails", params: { id: eventID } });
     },
   },

@@ -235,7 +235,7 @@ export default {
           .post(apiURL, this.event)
           .then(() => {
             alert("Event has been added.");
-            this.$router.push("/findEvents");
+            this.$router.push("/findEvents");// Added client variables
             this.client = {
               eventName: "",
               services: [],
@@ -253,6 +253,7 @@ export default {
           })
           .catch((error) => {
             console.log(error);
+            alert("Event was not added successfully.")
           });
       }
     },
