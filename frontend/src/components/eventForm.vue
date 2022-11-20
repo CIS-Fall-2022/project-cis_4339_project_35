@@ -253,6 +253,7 @@ export default {
           })
           .catch((error) => {
             console.log(error);
+            alert("Event was not added successfully.")
           });
       }
     },
