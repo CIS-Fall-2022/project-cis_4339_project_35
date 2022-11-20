@@ -81,7 +81,9 @@ router.post("/", (req, res, next) => {
         req.body,
         (error, data) => { 
             if (error) {
-                return next(error);
+
+                console.log("Unable to add Client.");
+                res.status(500).send("Unable to add Client.");
             } else {
                 res.json(data); 
             }
