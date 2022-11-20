@@ -317,7 +317,7 @@ export default {
     formattedDate(datetimeDB) {
       return DateTime.fromISO(datetimeDB).plus({ days: 1 }).toLocaleString();
     },
-    handleEventUpdate() {
+    handleEventUpdate() {  // Question to confirm update
       this.event.services = this.checkedServices;
       let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/${this.id}`;
       if (window.confirm("Are you sure you want to update event?")) {
@@ -330,7 +330,7 @@ export default {
       }
     },
     handleEventDelete() {
-      this.event.services = this.checkedServices;
+      this.event.services = this.checkedServices; // Question to delete event
       let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/${this.id}`;
       if (window.confirm("Are you sure you want to delete event?")) {
       axios.delete(apiURL, this.event).then(() => {

@@ -119,7 +119,7 @@ export default {
     window.scrollTo(0, 0);
   },
   methods: {
-    handleSubmitForm() {
+    handleSubmitForm() {// code created to submit the form
       let apiURL = "";
       if (this.searchBy === "Client Name") {
         apiURL =

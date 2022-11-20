@@ -95,7 +95,7 @@ export default {
     formattedDate(datetimeDB) {
       return DateTime.fromISO(datetimeDB).plus({ days: 1 }).toLocaleString();
     },
-    handleClientUpdate() {
+    handleClientUpdate() { // method used asking to update client
       let apiURL = import.meta.env.VITE_ROOT_API + `/clientdata/${this.id}`;
       if (window.confirm("Are you sure you want to update client?")) {
       axios.put(apiURL, this.client).then(() => {

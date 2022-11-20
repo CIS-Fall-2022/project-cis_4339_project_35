@@ -59,7 +59,7 @@
         return axios.get(apiURL).then(resp => {
           const numAttend = []
           for (const key in resp.data) {
-          numAttend.push(resp.data[key].numberOfAttendees)
+          numAttend.push(resp.data[key].numberOfAttendees)// push numAttend variable into numberofAttendees 
           }
           return numAttend // Gathering the count of attendees for each event for the y-axis data 
         }).catch(error => {
