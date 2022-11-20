@@ -66,6 +66,7 @@ export default {
           })
           .catch((error) => {
             console.log(error);
+            alert("Client was not succesfully added.");
           });
       }
     },
