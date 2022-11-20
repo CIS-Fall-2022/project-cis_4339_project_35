@@ -102,6 +102,7 @@ export default {
         alert("Update has been saved.");
         this.$router.back().catch((error) => {
           console.log(error);
+          alert("Update could not be performed.");
         });
       });
     }
