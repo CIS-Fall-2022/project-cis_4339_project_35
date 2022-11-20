@@ -5,7 +5,7 @@ const routes = [
         path: '/',
         name: 'dashBoard',
         props: true,
-        component: () => import('../components/dashBoard.vue')
+        component: () => import('../components/dashboard.vue')
     },
     {
         path: '/intakeform',
