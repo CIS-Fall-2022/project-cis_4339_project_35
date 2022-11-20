@@ -17,8 +17,7 @@ let clientDataSchema = new Schema({
         required: true
     },
     email: {
-        type: String,
-        unique: true
+        type: String
     },
     phoneNumbers: {
         type: Array,
@@ -110,7 +109,6 @@ let organDataSchema = new Schema({
     },
     orgPhone:{
         type: String,
-        unique: true
     }
 }, {
     collection: 'organData'
