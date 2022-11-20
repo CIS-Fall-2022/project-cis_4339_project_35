@@ -50,7 +50,7 @@ export default {
         import.meta.env.VITE_ROOT_API +
           `/clientdata/id/${this.$route.params.id}`
       )
-      .then((resp) => {
+      .then((resp) => { // Client variables
         let data = resp.data[0];
         this.client.firstName = data.firstName;
         this.client.middleName = data.middleName;
@@ -80,7 +80,7 @@ export default {
           });
         });
       });
-    axios.get(import.meta.env.VITE_ROOT_API + `/eventdata`).then((resp) => {
+    axios.get(import.meta.env.VITE_ROOT_API + `/eventdata`).then((resp) => { // event data api added
       let data = resp.data;
       for (let i = 0; i < data.length; i++) {
         this.eventData.push({
